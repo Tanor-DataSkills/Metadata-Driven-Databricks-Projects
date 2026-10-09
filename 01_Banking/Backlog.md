@@ -7,9 +7,9 @@
 
 **✅ US 1.1 : Modélisation et création de la base de métadonnées (SQL Server / Azure SQL DB)**
 
-Créer les tables de configuration : pipeline_config (source, destination, format, clé primaire, fréquence, statut d'activation) et pipeline_audit (start_time, end_time, rows_read, rows_written, status, error_message).   
+ℹ️ Créer les tables de configuration : pipeline_config (source, destination, format, clé primaire, fréquence, statut d'activation) et pipeline_audit (start_time, end_time, rows_read, rows_written, status, error_message).   
 
-Insérer les configurations initiales pour les 6 tables (branches, customers, accounts, transactions, credit_bureau_report, payment_gateway_logs).   
+ℹ️ Insérer les configurations initiales pour les 6 tables (branches, customers, accounts, transactions, credit_bureau_report, payment_gateway_logs).   
 
 **✅ US 1.2 : Configuration de Unity Catalog & volumes Databricks**
 Créer les catalogues/schémas dans Unity Catalog (bronze, silver, gold) et gérer les droits d'accès.   
