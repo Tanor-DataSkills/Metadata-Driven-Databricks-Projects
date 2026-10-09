@@ -35,20 +35,15 @@ Dans ce projet, nous allons concevoir et bâtir, de A à Z, un framework robuste
   
 ## Design the architecture
 
-L'image ci-dessous montre ce que nous allons techniquement faire dans ce projet:
-
-<img width="1101" height="535" alt="image" src="https://github.com/user-attachments/assets/824d8fb8-1d43-4909-8679-083e71cb15d4" />
-
 
 ---
 
 - **Sources de données:** Nous utiliserons **2 sources de données**: SQL Server et Azure blob storage(on utilisera le ***Volume de Databricks*** car ayant les memes caractéristiques de stockage cloud)
 - **Ingestion:** Ensuite on va ingérer les données à l'aide des fonctionnalités de Databricks **Lakeflow connect** pour Salesforce, PostgreSQL; **Auto loader** pour Azure blob storage
 - **Transformations:** Pour la transformation des données dans une medaillon architecture on utilisera le composant **Lakeflow Déclarative Pipelines** de Databricks.
-- **Semantic layer:** Nous mettrons en place un **Metric view** comme **semantic layer**
 - **Data consum:** Pour la consommation on produira des **Databricks dashboards** et **Genie workspace**.
-- **Orchestration:** Après avoir conçu la solution on utilisera des **Databricks job** pour orchestrer le tout.
-- **Gouvernance: Unity Catalog de Databricks** sera utilisé comme outil de gouvernance.
+- **Orchestration:** Après avoir conçu la solution on utilisera des **Databricks job et SQL DB (Metadata + Audit)** pour orchestrer le tout.
+- **Gouvernance: Unity Catalog de Databricks** sera utilisé comme outil de gouvernance, un email personalisé est envoyé pour donner infos sur l'etat et le statut des traitements.
 - **Databricks Genie code**: va etre utilisé comme base de développement durant tout au long de ce projet dans les notebooks
 
 **Databricks Genie code:** *Est récemment conçu par Databricks; il est très pratique en permettant de gagner en productivité et ne pas perdre trop de temps dans la conception des code manuellement*.
@@ -56,7 +51,19 @@ L'image ci-dessous montre ce que nous allons techniquement faire dans ce projet:
 - **Gold layer - Modèlisation:**
 Une modélisation en étoile sera conçue.dans Gold layer on aura une Fact_table et 3 Dim_tables(Dim_customer, dim_product et dim_calendar)
 
-<img width="893" height="465" alt="image" src="https://github.com/user-attachments/assets/a656c63f-5816-496f-b33c-6e50adab6ae4" />
+> [!IMPORTANT]
+> ⚠️ Avec le ***Metadata driven*** une mise à jour des metadata permet de faire traiter de nouvelles données sans pour autant taper du code. Les tables de metadata rendrons le framework réutilisable 
+L'image ci-dessous montre ce que nous allons techniquement faire dans ce projet:
+
+
+<img width="1101" height="535" alt="image" src="https://github.com/user-attachments/assets/1f5fdd40-bbbd-4920-85f1-5181f1ab7afb" />
+
+L'image ci-dessous montre nos Metadata tables:
+
+## Metadata Tables
+<img width="834" height="581" alt="image" src="https://github.com/user-attachments/assets/a84fbcb9-a1c3-4b68-be1e-fb540bb188ce" />
+
+Nous disposons 4 tables de metadata: tables, table_parameters, table_watermarks, pipeline_runs
 
 ---
 
